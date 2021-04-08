@@ -3,6 +3,8 @@ import { FormGroup,FormControl } from '@angular/forms';
 import { FormBuilder} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { Data } from '../../../Data';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -11,7 +13,7 @@ import { NgModule } from '@angular/core';
 })
 export class FormComponent implements OnInit {
   
-  data:any;
+  // data:any;
 
     submitted = false;
 
@@ -20,10 +22,16 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+
+
+  
+  newlis:Array<Data>= []
+
   registerForm = this.fb.group({
     firstName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    phoneNumber: ['', [Validators.required,Validators.pattern('^[0-9]+$')]],
+    phoneNumber: ['', [Validators.required,Validators.pattern('^[0-9]+$'),Validators.minLength(10)]],
     lastName: ['', Validators.required],
      
 });
@@ -46,8 +54,10 @@ onReset() {
    }
 
    onsubmit():void{
+
+
     this.submitted =true;
-   this.data=this.registerForm.value;
-          console.log(this.registerForm.value)
+    this.newlis.push(this.registerForm.value);
+          console.log(this.newlis)
        }
 }

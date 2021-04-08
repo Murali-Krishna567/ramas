@@ -7,7 +7,7 @@
                     <div class="col-sm-8">
                     <input type="text" formControlName="firstName" placeholder="User Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        <div *ngIf="f.firstName.errors.required"><sup>*</sup>First Name is required</div>
                     </div>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                     <div class="col-sm-8">
                     <input type="text" formControlName="email" placeholder="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.required"><sup>*</sup>Email is required,</div>
                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                     </div>
                     </div>
@@ -27,9 +27,9 @@
                     <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Phone Number" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
                     <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                        <small  *ngIf="f.phoneNumber.errors"> phoneNumber is required</small>
-                        <small *ngIf="f.phoneNumber.errors.minlength"> phoneNumber must contain 10 Digits</small>
-                        <small  *ngIf="f.phoneNumber.errors.maxlength"> phoneNumber can't be more than 10 Digits</small>
+                        <small  *ngIf="f.phoneNumber.errors"> <sup>*</sup>phoneNumber is required,</small>
+                        <small *ngIf="f.phoneNumber.errors.minlength"> phoneNumber must contain 10 Digits,</small>
+                        <small  *ngIf="f.phoneNumber.errors.maxlength"> phoneNumber can't be more than 10 Digits,</small>
                         <small  *ngIf="f.phoneNumber.errors.pattern">PhoneNumber should not contain special characters</small>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="col-sm-8">
                     <input type="text" formControlName="lastName" placeholder="Address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                     <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                        <div *ngIf="f.lastName.errors.required">Adress is required</div>
+                        <div *ngIf="f.lastName.errors.required"><sup>*</sup>Adress is required</div>
                     </div>
                     </div>
                 </div>
@@ -63,18 +63,19 @@
 <hr/>
 <div *ngIf="submitted" >
     <table>
+        <tr>
         <th>User Name</th>
         <th>Email Id</th>
         <th>Phone Number</th>
         <th>Address</th>
-        <tbody>
-            <tr>
-                <td>{{data.firstName}}</td>
-                <td>{{data.email}}</td>
-                <td>{{data.phoneNumber}}</td>
-                <td>{{data.lastName}}</td>
+    </tr> 
+            <tr *ngFor="let i of newlis">
+                <td>{{i.firstName}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phoneNumber}}</td>
+                <td>{{i.lastName}}</td>
             </tr>
-        </tbody>
+         
     </table>
 
 </div>
